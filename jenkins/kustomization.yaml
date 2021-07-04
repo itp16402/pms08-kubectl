@@ -1,0 +1,4 @@
+resources:
+        - jenkins-pvc.yaml
+        - jenkins-deployment.yaml
+        - jenkins-svc.yaml

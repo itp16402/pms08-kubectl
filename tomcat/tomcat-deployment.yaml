@@ -1,0 +1,88 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tomcat-svc
+  labels:
+    app: tomcat
+spec:
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+  selector:
+    app: tomcat
+    tier: frontend
+  type: LoadBalancer
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: tomcat-pv
+  labels:
+    type: local
+    app: tomcat
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data/"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: tomcat-pvc
+  labels:
+    app: tomcat
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomcat-deployment
+  labels:
+    app: tomcat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tomcat
+      tier: frontend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: tomcat
+        tier: frontend
+    spec:
+      containers:
+              #       - image: rightctrl/tomcat
+      - image: tomcat
+        name: tomcat
+#        env:
+#        - name: WORDPRESS_DB_HOST
+#          value: tomcat-postgress
+#        - name: WORDPRESS_DB_PASSWORD
+#          valueFrom:
+#            secretKeyRef:
+#              name: mysql-pass
+#              key: password
+        ports:
+        - containerPort: 80
+          name: tomcat
+        volumeMounts:
+        - name: tomcat-persistent-storage
+          mountPath: /usr/local/tomcat/webapps
+      volumes:
+      - name: tomcat-persistent-storage
+        persistentVolumeClaim:
+          claimName: tomcat-pvc
