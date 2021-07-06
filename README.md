@@ -42,7 +42,7 @@ cat masters.sql | k exec -i postgres-deployment-pod -- psql -U postgres -d postg
 Τέλος θα πρέπει να συνδεθείτε στο Jenkins http://huapms08.cloudns.cl:30000 και να γίνουν build τα παρακάτω projects:
 
 pms08-back-login
-pms08-main-login
-pms08-mail-login
+pms08-back-main
+pms08-back-mail
 
 pms08-font
