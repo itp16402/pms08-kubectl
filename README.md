@@ -32,3 +32,17 @@ pms8-ingress
 Secret:
 
 pg-user
+
+θα πρέπει να μετακινηθείτε στον φάκελλο postgres και να εκτελεστεί η εντολή:
+
+cat masters.sql | k exec -i postgres-deployment-pod -- psql -U postgres -d postgres
+
+όπου postgres-deployment-pod το pod της postgress.
+
+Τέλος θα πρέπει να συνδεθείτε στο Jenkins http://huapms08.cloudns.cl:30000 και να γίνουν build τα παρακάτω projects:
+
+pms08-back-login
+pms08-main-login
+pms08-mail-login
+
+pms08-font
