@@ -16,22 +16,6 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
---
--- Name: public; Type: SCHEMA; Schema: -; Owner: postgres
---
-
-CREATE SCHEMA public;
-
-
-ALTER SCHEMA public OWNER TO postgres;
-
---
--- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: postgres
---
-
-COMMENT ON SCHEMA public IS 'standard public schema';
-
-
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
@@ -528,14 +512,14 @@ ALTER SEQUENCE public.add221performance_id_seq OWNED BY public.add221performance
 CREATE TABLE public.add231 (
     id integer NOT NULL,
     isologismosdictionaryid integer NOT NULL,
-    isimportant integer NOT NULL,
-    y integer NOT NULL,
-    pd integer NOT NULL,
-    ak integer NOT NULL,
-    ap integer NOT NULL,
-    dd integer NOT NULL,
-    tp integer NOT NULL,
-    assessment integer NOT NULL,
+    isimportant integer,
+    y integer,
+    pd integer,
+    ak integer,
+    ap integer,
+    dd integer,
+    tp integer,
+    assessment integer,
     a231id integer NOT NULL,
     isimportantrisk integer,
     isimportantassessment integer
@@ -1163,8 +1147,8 @@ COMMENT ON TABLE public.role IS 'Ρόλοι';
 -- Name: COLUMN role.role; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.role.role IS '1. owner - Ονοματεπώνυμο εταίρου ανάθεσης
-2. admin - Ονοματεπώνυμο υπεύθυνου ανάθεσης
+COMMENT ON COLUMN public.role.role IS '1. owner - Ονοματεπώνυμο εταίρου ανάθεσης
+2. admin - Ονοματεπώνυμο υπεύθυνου ανάθεσης
 3. member - Μέλη Ελεγκτικής Ομάδας';
 
 
@@ -1419,6 +1403,7 @@ ALTER TABLE ONLY public.userrole ALTER COLUMN id SET DEFAULT nextval('public.use
 COPY public.a111 (id, auditstart, auditend, foldercopy, entitytype, turnover, branch, agreementdate, letterdate, financialstatementsdate, appointmentdate, reportdate, archivingdate, consecutiveyears, statutoryaudit, taxaudit, hours, acceptance, projectid) FROM stdin;
 1	2020-10-10	2020-10-10	0	0	0	string	2020-10-10	2020-10-10	2020-10-10	2020-10-10	2020-10-10	2020-10-10	0	0	0	0	string	135691
 2	2021-05-01	2021-06-29	\N	0	2	sadasf	2021-05-31	2021-05-31	2021-05-31	2021-06-01	2021-06-01	2021-06-28	2	\N	\N	250	Nai	149461
+4	2021-07-05	2021-07-05	\N	0	2	2	2021-07-04	2021-07-04	2021-07-04	2021-07-04	2021-07-04	2021-07-04	2	\N	\N	12	2	149630
 \.
 
 
@@ -1429,6 +1414,7 @@ COPY public.a111 (id, auditstart, auditend, foldercopy, entitytype, turnover, br
 COPY public.a221 (id, baseid, ovamount, taxovamount, documentationbase, projectid) FROM stdin;
 2	\N	\N	\N	\N	135691
 3	2	291655.00	\N	\N	149461
+4	2	50000.00	\N	12	149630
 \.
 
 
@@ -1438,6 +1424,7 @@ COPY public.a221 (id, baseid, ovamount, taxovamount, documentationbase, projecti
 
 COPY public.a231 (id, peramount, projectid) FROM stdin;
 16	189575.75	149461
+19	32500.00	149630
 \.
 
 
@@ -1451,6 +1438,11 @@ COPY public.add221overall (id, baseid, interimbaseamount, examount, finalbaseamo
 5	5	-2055297.38	\N	\N	-102764.87	-205529.74	\N	\N	3
 1	1	61458152.79	\N	\N	800000.00	24000000.00	13140.00	1.46	3
 2	2	1448638.52	\N	\N	400000.00	750000.00	291655.00	44.87	3
+6	1	61458152.79	\N	\N	614581.53	1843744.58	\N	\N	4
+8	3	1640083.23	\N	\N	16400.83	49202.50	\N	\N	4
+9	4	416414.61	\N	\N	4164.15	12492.44	\N	\N	4
+10	5	-2055297.38	\N	\N	-102764.87	-205529.74	\N	\N	4
+7	2	1448638.52	\N	\N	43459.16	72431.93	50000.00	3.45	4
 \.
 
 
@@ -1461,6 +1453,7 @@ COPY public.add221overall (id, baseid, interimbaseamount, examount, finalbaseamo
 COPY public.add221performance (id, year, ovamount, percentage, peramount, taxperamount, a221id) FROM stdin;
 2	2015	\N	\N	\N	\N	2
 3	2017	291655.00	65.00	189575.75	0.00	3
+4	2017	50000.00	65.00	32500.00	0.00	4
 \.
 
 
@@ -1469,6 +1462,31 @@ COPY public.add221performance (id, year, ovamount, percentage, peramount, taxper
 --
 
 COPY public.add231 (id, isologismosdictionaryid, isimportant, y, pd, ak, ap, dd, tp, assessment, a231id, isimportantrisk, isimportantassessment) FROM stdin;
+351	2	0	\N	\N	\N	\N	\N	\N	0	19	0	0
+352	5	0	\N	\N	\N	\N	\N	\N	0	19	0	0
+353	7	0	\N	\N	\N	\N	\N	\N	0	19	0	0
+354	8	0	\N	\N	\N	\N	\N	\N	0	19	0	0
+355	10	0	\N	\N	\N	\N	\N	\N	0	19	0	0
+356	12	0	\N	\N	\N	\N	\N	\N	0	19	0	0
+357	13	0	\N	\N	\N	\N	\N	\N	0	19	0	0
+358	17	0	\N	\N	\N	\N	\N	\N	0	19	0	0
+359	19	0	\N	\N	\N	\N	\N	\N	0	19	0	0
+360	22	0	\N	\N	\N	\N	\N	\N	0	19	0	0
+361	23	0	\N	\N	\N	\N	\N	\N	0	19	0	0
+362	26	0	\N	\N	\N	\N	\N	\N	0	19	0	0
+363	27	0	\N	\N	\N	\N	\N	\N	0	19	0	0
+364	1	0	\N	\N	\N	\N	\N	\N	0	19	0	0
+365	34	0	\N	\N	\N	\N	\N	\N	0	19	0	0
+366	38	0	\N	\N	\N	\N	\N	\N	0	19	0	0
+367	41	0	\N	\N	\N	\N	\N	\N	0	19	0	0
+368	43	0	\N	\N	\N	\N	\N	\N	0	19	0	0
+369	47	0	\N	\N	\N	\N	\N	\N	0	19	0	0
+370	49	0	\N	\N	\N	\N	\N	\N	0	19	0	0
+371	51	0	\N	\N	\N	\N	\N	\N	0	19	0	0
+372	55	0	\N	\N	\N	\N	\N	\N	0	19	0	0
+373	59	0	\N	\N	\N	\N	\N	\N	0	19	0	0
+374	62	0	\N	\N	\N	\N	\N	\N	0	19	0	0
+375	67	0	\N	\N	\N	\N	\N	\N	0	19	0	0
 276	2	0	0	0	0	0	0	0	0	16	0	0
 277	5	0	0	0	0	0	0	0	0	16	0	0
 278	7	0	0	0	0	0	0	0	0	16	0	0
@@ -1516,7 +1534,9 @@ COPY public.base (id, name, nlslang) FROM stdin;
 
 COPY public.flowchart (id, phase, name, formname, nlslang, formtype, sorder, type, icon, css, flowchartparentid, state) FROM stdin;
 2	1	Αποδοχή	statutory/acceptance	el	T	1.00	sub	av_timer	\N	1	statutory/acceptance
-3	2	Σχεδιασμός	statutory/planning	el	T	1.00	sub	content_copy	\N	1	statutory/planning
+4	1	Acceptance	statutory/acceptance	en	T	1.00	sub	av_timer	\N	2	statutory/acceptance
+3	2	Σχεδιασμός	statutory/planning	el	T	2.00	sub	content_copy	\N	1	statutory/planning
+5	2	Planning	statutory/planning	en	T	2.00	sub	content_copy	\N	2	statutory/planning
 \.
 
 
@@ -1529,6 +1549,10 @@ COPY public.flowchartchild (id, phase, name, formname, nlslang, formtype, sorder
 8	1	1.2 Ομάδα Ελέγχου	a121	el	T	1.20	link	remove_red_eye	\N	2	acceptance-second-step
 6	2	2.1 Ουσιώδες Μέγεθος	a221	el	T	2.10	link	remove_red_eye	\N	3	planning-first-step
 7	2	2.2 Σημαντικοί Λογαριασμοί	a231	el	T	2.20	link	remove_red_eye	\N	3	planning-second-step
+9	1	1.1 Audit Engagement Overview	a111	en	T	1.10	link	remove_red_eye	\N	4	acceptance-first-step
+10	1	1.2 Engagement Team	a121	en	T	1.20	link	remove_red_eye	\N	4	acceptance-second-step
+11	2	2.1 Essential Size	a221	en	T	2.10	link	remove_red_eye	\N	5	planning-first-step
+12	2	2.2 Important Accounts	a231	en	T	2.20	link	remove_red_eye	\N	5	planning-second-step
 \.
 
 
@@ -1538,6 +1562,7 @@ COPY public.flowchartchild (id, phase, name, formname, nlslang, formtype, sorder
 
 COPY public.flowchartparent (id, phase, name, formname, nlslang, formtype, sorder, type, icon, css) FROM stdin;
 1	1	Τακτικός	statutory	el	T	1.00	sub	\N	\N
+2	1	Statutory	statutory	en	T	2.00	sub	\N	\N
 \.
 
 
@@ -1574,9 +1599,6 @@ COPY public.formrole (id, formlistid, userroleid, state) FROM stdin;
 22	1	20	\N
 23	3	20	\N
 24	2	20	\N
-25	1	23	\N
-26	3	23	\N
-27	2	23	\N
 28	1	26	\N
 29	3	26	\N
 30	2	26	\N
@@ -1592,7 +1614,6 @@ COPY public.formrole (id, formlistid, userroleid, state) FROM stdin;
 40	4	14	\N
 41	4	17	\N
 42	4	20	\N
-43	4	23	\N
 44	4	26	\N
 45	4	29	\N
 10	1	8	1
@@ -1600,6 +1621,10 @@ COPY public.formrole (id, formlistid, userroleid, state) FROM stdin;
 12	2	8	0
 5	3	35	0
 11	3	8	0
+25	1	23	1
+43	4	23	1
+27	2	23	1
+26	3	23	1
 \.
 
 
@@ -1649,23 +1674,23 @@ COPY public.forms (id, tablename, nlslang, formtype, keli, onoma, typos, svalues
 6876	AFTER ORDER SELECTED	en	T	title	Display with project info	TITLE						0.00	0	0		\N	\N	\N
 6877	AFTER ORDER SELECTED	el	T	title	Πληροφορίες project	TITLE						0.00	0	0		\N	\N	\N
 6893	FORM FIELDS	en	T		Actions	TABLE HEADERS		\N			custom-info	3.00	0	0	\N	\N	\N	\N
+6899	ASSIGN TABLE	en	T		Select all wanted form(s):	PARAGRAPH	\N	\N	\N	\N	\N	1.00	0	0	\N	\N	\N	\N
 6882	DELETE TABLE	el	T	title	Λεκτικά για το γενικό dialog της διαγραφής	TITLE		\N			custom-info	6.00	0	0	\N	\N	\N	\N
 6883	DELETE TABLE	en	T	title	Labels for general delete dialog	TITLE		\N			custom-info	6.00	0	0	\N	\N	\N	\N
 6884	DELETE MEMBER	el	T	title	Λεκτικά για το dialog διαγραφής μέλους	TITLE		\N			custom-info	6.00	0	0	\N	\N	\N	\N
 6885	DELETE MEMBER	en	T	title	Labels for delete member dialog	TITLE		\N			custom-info	6.00	0	0	\N	\N	\N	\N
 6886	EDIT TABLE	el	T	title	Λεκτικά για το dialog της επεξεργασίας φορμών	TITLE		\N			custom-info	6.00	0	0	\N	\N	\N	\N
 6887	EDIT TABLE	en	T	title	Labels for forms edit dialog	TITLE		\N			custom-info	6.00	0	0	\N	\N	\N	\N
+6900	ASSIGN TABLE	en	T		Ok	YES BUTTON	\N	\N	\N	\N	\N	2.00	0	0	\N	\N	\N	\N
 6791	a121	en	T	title	1.2.1 - Engagement Team	TITLE		\N			custom-info	2.00	0	0	\N	\N	\N	\N
+6896	ASSIGN TABLE	el	T		Εντάξει	YES BUTTON	\N	\N	\N	\N	\N	2.00	0	0	\N	\N	\N	\N
+6901	ASSIGN TABLE	en	T		Return	NO BUTTON	\N	\N	\N	\N	\N	3.00	0	0	\N	\N	\N	\N
 6880	BUTTONS	el	T	title	Λεκτικά Buttons	TITLE					custom-help	0.00	0	0			\N	\N
+6895	ASSIGN TABLE	el	T		Επιλέξτε την/τις φόρμα(ες):	PARAGRAPH	\N	\N	\N	\N	\N	1.00	0	0	\N	\N	\N	\N
 6782	a121	el	T	title	1.2.1 - Ομάδα Ελέγχου	TITLE		\N			custom-info	2.00	0	0	\N	\N	\N	\N
-6894	ASSIGN TABLE	el	title	title	Αντιστοίχηση φόρμας(φορμών) στο μέλος:	TITLE	\N	\N	\N	\N	custom-info	0.00	\N	\N	\N	\N	\N	\N
-6895	ASSIGN TABLE	el	title	\N	Επιλέξτε την/τις φόρμα(ες):	PARAGRAPH	\N	\N	\N	\N	\N	1.00	\N	\N	\N	\N	\N	\N
-6896	ASSIGN TABLE	el	title	\N	Εντάξει	YES BUTTON	\N	\N	\N	\N	\N	2.00	\N	\N	\N	\N	\N	\N
-6897	ASSIGN TABLE	el	title	\N	Επιστροφή	NO BUTTON	\N	\N	\N	\N	\N	3.00	\N	\N	\N	\N	\N	\N
-6898	ASSIGN TABLE	en	title	title	Assing form(s) to member:	TITLE	\N	\N	\N	\N	custom-info	0.00	\N	\N	\N	\N	\N	\N
-6899	ASSIGN TABLE	en	title	\N	Select all wanted form(s):	PARAGRAPH	\N	\N	\N	\N	\N	1.00	\N	\N	\N	\N	\N	\N
-6900	ASSIGN TABLE	en	title	\N	Ok	YES BUTTON	\N	\N	\N	\N	\N	2.00	\N	\N	\N	\N	\N	\N
-6901	ASSIGN TABLE	en	title	\N	Return	NO BUTTON	\N	\N	\N	\N	\N	3.00	\N	\N	\N	\N	\N	\N
+6894	ASSIGN TABLE	el	T	title	Αντιστοίχηση φόρμας(φορμών) στο μέλος:	TITLE	\N	\N	\N	\N	custom-info	0.00	0	0	\N	\N	\N	\N
+6897	ASSIGN TABLE	el	T		Επιστροφή	NO BUTTON	\N	\N	\N	\N	\N	3.00	0	0	\N	\N	\N	\N
+6898	ASSIGN TABLE	en	T	title	Assing form(s) to member:	TITLE	\N	\N	\N	\N	custom-info	0.00	0	0	\N	\N	\N	\N
 6814	LOGIN	el	T		Δεν έχετε λογαριασμό;	REGISTER TEXT		\N				0.00	0	0	\N	\N	\N	\N
 6815	LOGIN	en	T		Don't have an account?	REGISTER TEXT		\N				0.00	0	0	\N	\N	\N	\N
 6852	FORMS TABLE	en	T	title	Application vocabulary management	TITLE		\N			custom-info	0.00	0	0	\N	\N	\N	\N
@@ -1707,6 +1732,8 @@ COPY public.forms (id, tablename, nlslang, formtype, keli, onoma, typos, svalues
 6849	REGISTER	el	T		Πρέπει να πληκτρολογήσετε τον παραπάνω κωδικό.	CONFIRM PASSWORD REQUIRED		\N				6.10	0	0	\N	\N	\N	\N
 6850	REGISTER	en	T		Passwords do not match.	VALID CONFIRM PASSWORD REQUIRED		\N				6.20	0	0	\N	\N	\N	\N
 6851	REGISTER	el	T		Οι κωδικοί πρόσβασης δεν ταιριάζουν.	VALID CONFIRM PASSWORD REQUIRED		\N				6.20	0	0	\N	\N	\N	\N
+6902	a231	en	T	a1	Performance Materiality	NUMBER	\N	\N				1.00	1	0		\N	\N	\N
+6903	a231	en	T			MODAL add231	\N	\N				2.00	0	0	Δεν προσθέτει νέα γραμμή	\N	\N	\N
 6863	FORMS TABLE	el	T		Γλώσσα	TABLE HEADERS		\N			custom-info	1.00	0	0	\N	\N	\N	\N
 6862	FORMS TABLE	en	T		Language	TABLE HEADERS		\N			custom-info	1.00	0	0	\N	\N	\N	\N
 6858	FORMS TABLE	en	T		Vocabulary	TABLE HEADERS		\N			custom-info	2.00	0	0	\N	\N	\N	\N
@@ -1722,8 +1749,47 @@ COPY public.forms (id, tablename, nlslang, formtype, keli, onoma, typos, svalues
 6869	FORM FIELDS	el	T		Λεκτικό	TABLE HEADERS		\N			custom-info	1.00	0	0	\N	\N	\N	\N
 6870	FORM FIELDS	el	T		Ενέργειες	TABLE HEADERS		\N			custom-info	3.00	0	0	\N	\N	\N	\N
 6873	FORM FIELDS	el	T		Τύπος	TABLE HEADERS		\N			custom-info	2.00	0	0	\N	\N	\N	\N
+6904	a231	en	T		Final	FINAL	\N	\N				0.00	0	0		\N	\N	\N
+6905	a231	en	T		Intermediate	INTERMEDIATE	\N	\N				0.00	0	0		\N	\N	\N
+6906	a231	en	T		Your financial lines have changed. Select the refresh button.	REFRESH MESSAGE	\N	\N				0.00	0	0		\N	\N	\N
+6907	a231	en	T		Refresh	REFRESH BUTTON	\N	\N				0.00	0	0		\N	\N	\N
 6874	HOME	en	T		Tables	FORMS HEADER						1.00	0	0		\N	\N	\N
 6875	HOME	el	T		Πίνακες	FORMS HEADER						1.00	0	0		\N	\N	\N
+6908	a231	en	T	title	2.2.1 - Significant Accounts and Related Claims	TITLE	\N	\N			custom-info	4.00	1	0	\N	<b><font color="4C92ED">125.034</font></b> - Ο ελεγκτής πρέπει να εντοπίσει σημαντικούς λογαριασμούς και γνωστοποιήσεις και τους σχετικούς ισχυρισμούς τους. Σχετικοί ισχυρισμοί είναι αυτοί οι ισχυρισμοί οικονομικών καταστάσεων που έχουν εύλογη πιθανότητα να περιέχουν σφάλμα το οποίο θα είχε σαν αποτέλεσμα οι οικονομικές καταστάσεις να είναι ουσιωδώς εσφαλμένες. Οι ισχυρισμοί οικονομικών καταστάσεων καλύπτονται στο κεφάλαιο 10, ισχυρισμοί. <br><br> <b><font color="4C92ED">125.035</font></b> - Ο εντοπισμός σημαντικών λογαριασμών και γνωστοποιήσεων είναι ζήτημα κρίσεως που απαιτεί ποιοτική και ποσοτική κρίση. Οι παρακάτω παράγοντες κινδύνων που βοηθούν στη διαδικασία εντοπισμού μπορούν να βρεθούν στο AS 5: <ul> <li> Μέγεθος και σύνθεση του λογαριασμού, </li><li>Ευαισθησία σε (εγγενή κίνδυνο) ανακρίβεια λόγω σφαλμάτων ή απάτης </li><li>Όγκος δραστηριότητας, πολυπλοκότητα και ομοιογένεια των μεμονωμένων συναλλαγών που περιέχονται στον λογαριασμό και την γνωστοποίηση, </li><li>Φύση του λογαριασμού ή γνωστοποίησης, </li><li> Λογιστικές πολυπλοκότητες που συνδέονται με τον λογαριασμό ή την γνωστοποίηση</li><li> Έκθεση σε ζημιές στον λογαριασμό, </li><li>  Πιθανότητα σημαντικών ενδεχόμενων υποχρεώσεων που προκύπτουν απο δραστηριότητες που υπάρχουν μεσα στο λογαριασμό ή στη γνωστοποίηση, </li><li>Ύπαρξη συνδεδεμένων μέρων στο λογαριασμό, </li><li>Αλλαγές απο προηγούμενες περιόδους στον λογαριασμό ή στα χαρακτηριστικά της γνωστοποίησης</li>	\N	\N
+6909	a221	en	T		Καταχωρίστε το Ισογύζιο για Ενδιάμεση Χρήση ή Τελική Χρήση του ελέγχου	IMPORT BALANCE		\N			custom-legend-h3	20.00	0	0	\N	Θα πρέπει να καταχωρήσετε Ισοζύγιο στην φόρμα 1.3.1 της φάσης της Αποδοχής, επιλέγοντας το βήμα 1.3: Εισαγωή: Ισοζυγίου	\N	\N
+6910	a221	en	T	overAmount	Overall Materiality	NUMBER		\N			\N	6.00	0	0	\N	\N	\N	\N
+6911	a221	en	T		Performance Materiality	LEGEND		\N			custom-legend-h3	8.00	0	0	\N	\N	\N	\N
+6913	a221	en	T		Overall Materiality	LEGEND		\N			custom-legend-h3	4.00	0	0	\N	\N	\N	\N
+6915	a221	en	T			MODAL add211overall		\N			\N	5.00	0	0	\N	\N	\N	\N
+6917	a221	en	T			MODAL add211performance		\N			\N	9.00	0	0	\N	\N	\N	\N
+6916	a221	en	T	documentationBase	Documentation of selected base and Overall Materiality	TEXT AREA		\N			\N	7.00	0	0	\N	\N	\N	\N
+6914	a221	en	T	title	2.1.1 - Materiality	TITLE		\N			custom-info	3.00	0	0	\N	\N	\N	\N
+6930	add231	en	T	a8	ACC	A8		Accuracy				10.00	1	0		\N	\N	\N
+6931	add231	en	T	a7	C/C	A7		Completeness / Cut off				9.00	1	0		\N	\N	\N
+6912	a221	en	T	baseId	Basis for determining materiality	MATERIALITY_BASE		\N			custom-help	4.00	0	0	\N	Η βάση υπολογισμού του ουσιώδους μεγέθους αποτελεί ένα επιλεγμένο σημείο αναφοράς ως αφετηρία για τον καθορισμό του ουσιώδους μεγέθους για τις οικονομικές καταστάσεις ως σύνολο. Το ΔΠΕ 320(παρ. Α3, Α4) παραθέτει διάφορους παράγοντες που μπορούν να επηρεάσουν τον εντοπισμό ενός κατάλληλου σημείου αναφοράς.	\N	\N
+6920	add221overall	en	T	overAmount	Overall Amount	TABLE FINAL		\N				1.70	0	0		\N	\N	\N
+6921	add221overall	en	T	percentage	Percentage	TABLE FINAL		\N				1.80	0	0		\N	\N	\N
+6922	add221overall	en	T	minLimit	Min Limit	TABLE FINAL		\N				1.50	0	0		\N	\N	\N
+6923	add221overall	en	T	maxLimit	Max Limit	TABLE FINAL		\N				1.60	0	0		\N	\N	\N
+6924	add221overall	en	T	interimBaseAmount	Basis Amount	TABLE FINAL		\N				1.40	0	0		\N	\N	\N
+6919	add221overall	en	T	base	Basis	TABLE FINAL		\N				1.10	0	0		\N	\N	\N
+6925	add221performance	en	T	year	Year	TEXT AREA		\N				1.10	0	0	\N	\N	\N	\N
+6926	add221performance	en	T	overAmount	Overall Materiality	NUMBER		\N				1.20	0	0	\N	\N	\N	\N
+6927	add221performance	en	T	percentage	Percentage	NUMBER		\N				1.30	0	0	\N	\N	\N	\N
+6928	add221performance	en	T	perAmount	Performance Materiality	NUMBER		\N				1.40	0	0	\N	\N	\N	\N
+6929	add221performance	en	T	taxPerAmount	Tax Performance Materiality	NUMBER		\N				1.50	0	0	\N	\N	\N	\N
+6932	add231	en	T	a6	Ex	A6		Existance				8.00	1	0		\N	\N	\N
+6933	add231	en	T	a2	Amount	NUMBER	\N	\N				2.00	1	0		\N	\N	\N
+6934	add231	en	T	a4	Material?	CHECKBOX	\N	\N				3.00	1	0		\N	\N	\N
+6935	add231	en	T	a5	Significant?	CHECKBOX	\N	\N				4.00	1	0		\N	\N	\N
+6936	add231	en	T	a13	Estimate?	CHECKBOX		\N				6.00	1	0		\N	\N	\N
+6937	add231	en	T	a9	Val	A9		Valuation				11.00	1	0		\N	\N	\N
+6938	add231	en	T	a10	R/O	A10		Rigths / Obligations				12.00	1	0		\N	\N	\N
+6939	add231	en	T	a11	C/P	A11		Classification / Presentation				13.00	1	0		\N	\N	\N
+6941	add231	en	T	actions	Actions			\N				7.00	0	0		\N	\N	\N
+6942	add231	en	T	declarations	Assertions	CHECKBOX	\N	\N				5.00	1	0		\N	\N	\N
+6943	add231	en	T		Prior Year Amount	NUMBER	\N	\N				2.10	1	0		\N	\N	\N
+6940	add231	en	T	a1	Account	NUMBER	\N	\N				1.00	1	0		\N	\N	\N
 394	a221	el	T		Καταχωρίστε το Ισογύζιο για Ενδιάμεση Χρήση ή Τελική Χρήση του ελέγχου	IMPORT BALANCE		\N			custom-legend-h3	20.00	0	0	\N	Θα πρέπει να καταχωρήσετε Ισοζύγιο στην φόρμα 1.3.1 της φάσης της Αποδοχής, επιλέγοντας το βήμα 1.3: Εισαγωή: Ισοζυγίου	\N	\N
 397	a221	el	T		Μέγιστη επιτρεπτή τιμή	MAXVALUE		\N			\N	18.00	0	0	\N	\N	\N	\N
 424	a221	el	T		Ελάχιστη επιτρεπτή τιμή	MINVALUE		\N			\N	19.00	0	0	\N	\N	\N	\N
@@ -1898,7 +1964,6 @@ COPY public.forms (id, tablename, nlslang, formtype, keli, onoma, typos, svalues
 5259	a231	el	T	a1	Ουσιώδες Μέγεθος Εκτέλεσης	NUMBER	\N	\N				1.00	1	0		\N	\N	\N
 5260	add231	el	T	a1	Γραμμή οικονομικών καταστάσεων	NUMBER	\N	\N				1.00	1	0		\N	\N	\N
 5262	a231	el	T			MODAL add231	\N	\N				2.00	0	0	Δεν προσθέτει νέα γραμμή	\N	\N	\N
-5295	a221	el	T	taxOverAmount	Γενικό Επίπεδο Ουσιώδους Μεγέθους Φορολογικού Ελέγχου	NUMBER		\N			\N	6.10	0	0	\N	\N	\N	\N
 5264	RADIOBUTTONS	el	T		Κέρδη προ φόρων	MATERIALITY_BASE					custom-help	3.00	0	0		\N	\N	3
 5265	RADIOBUTTONS	el	T		Ίδια Κεφάλαια	MATERIALITY_BASE					custom-help	4.00	0	0		\N	\N	4
 5296	a221	el	T	documentationBase	Τεκμηρίωση επιλογής βάσης και Γενικού Επιπέδου Ουσιώδους Μεγέθους	TEXT AREA		\N			\N	7.00	0	0	\N	\N	\N	\N
@@ -1933,7 +1998,6 @@ COPY public.forms (id, tablename, nlslang, formtype, keli, onoma, typos, svalues
 5458	a231	el	T		Ενδιάμεσος	INTERMEDIATE	\N	\N				0.00	0	0		\N	\N	\N
 5461	a231	el	T		Οι οικονομικές σας γραμμές έχουν αλλάξει. Επιλέξτε το κουμπί τις ανανέωσης.	REFRESH MESSAGE	\N	\N				0.00	0	0		\N	\N	\N
 5462	a231	el	T		Ανανέωση	REFRESH BUTTON	\N	\N				0.00	0	0		\N	\N	\N
-5467	a221	el	T	documentationPerformance	Τεκμηρίωση επιλογής Ουσιώδους Μεγέθους Εκτέλεσης	TEXT AREA		\N			custom-help	10.00	0	0	\N	Το ποσό ή ποσά που τίθενται από τον ελεγκτή σε μικρότερο επίπεδο από το ουσιώδες μέγεθος των οικονομικών καταστάσεων ως συνόλου για να μειωθεί σε ένα αποδεκτά χαμηλό επίπεδο η πιθανότητα το άθροισμα των μη διορθωμένων και μη εντοπισμένων σφαλμάτων να υπερβαίνει το ουσιώδες μέγεθος για τις οικονομικές καταστάσεις ως σύνολο. Όταν συντρέχει περίπτωση, το ουσιώδες μέγεθος εκτέλεσης αναφέρεται επίσης στο ποσό ή ποσά που τίθενται από τον ελεγκτή χαμηλότερα από το επίπεδο ή επίπεδα ουσιώδους μεγέθους για συγκεκριμένες κατηγορίες συναλλαγών, υπόλοιπα λογαριασμών ή γνωστοποιήσεις.	\N	\N
 5479	RADIOBUTTONS	el	T		Μ.Α.μ.Α.Σ.	CONTROL_TYPE		Μη αυτοματοποιημένη με αυτοματοποιημένο συστατικό				2.00	0	0		\N	\N	2
 5510	BUTTONS	el	T		Ναι	YES					custom-help	3.00	0	0			\N	\N
 5502	RADIOBUTTONS	el	T		M.A.	CONTROL_TYPE		Μη αυτοματοποιημένη				0.00	0	0		\N	\N	0
@@ -2225,42 +2289,42 @@ COPY public.userrole (id, userid, roleid, projectid) FROM stdin;
 -- Name: a111_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.a111_id_seq', 2, true);
+SELECT pg_catalog.setval('public.a111_id_seq', 4, true);
 
 
 --
 -- Name: a221_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.a221_id_seq', 3, true);
+SELECT pg_catalog.setval('public.a221_id_seq', 4, true);
 
 
 --
 -- Name: a231_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.a231_id_seq', 16, true);
+SELECT pg_catalog.setval('public.a231_id_seq', 19, true);
 
 
 --
 -- Name: add221overall_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.add221overall_id_seq', 5, true);
+SELECT pg_catalog.setval('public.add221overall_id_seq', 10, true);
 
 
 --
 -- Name: add221performance_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.add221performance_id_seq', 3, true);
+SELECT pg_catalog.setval('public.add221performance_id_seq', 4, true);
 
 
 --
 -- Name: add231_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.add231_id_seq', 300, true);
+SELECT pg_catalog.setval('public.add231_id_seq', 375, true);
 
 
 --
@@ -2274,21 +2338,21 @@ SELECT pg_catalog.setval('public.base_id_seq', 5, true);
 -- Name: flowchart_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.flowchart_id_seq', 3, true);
+SELECT pg_catalog.setval('public.flowchart_id_seq', 5, true);
 
 
 --
 -- Name: flowchartchild_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.flowchartchild_id_seq', 8, true);
+SELECT pg_catalog.setval('public.flowchartchild_id_seq', 12, true);
 
 
 --
 -- Name: flowchartparent_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.flowchartparent_id_seq', 1, true);
+SELECT pg_catalog.setval('public.flowchartparent_id_seq', 2, true);
 
 
 --
@@ -2309,7 +2373,7 @@ SELECT pg_catalog.setval('public.formrole_id_seq', 46, true);
 -- Name: forms_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.forms_id_seq', 6901, true);
+SELECT pg_catalog.setval('public.forms_id_seq', 6943, true);
 
 
 --
