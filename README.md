@@ -12,32 +12,28 @@ micro8ks.kubctl apply -k ./
 
 deployments:
 
-postgres-deployment
-redis-deployment 
-jenkins-deployment
-tomcat-deployment
+* postgres-deployment
+* redis-deployment 
+* tomcat-deployment
 
 Persistent Volume Claims:
 
-postgres-pvc
-tomcat-pvc
-jenkins-pvc
+* postgres-pvc
+* tomcat-pvc
 
 Services:
 
-tomcat-svc
-jenkins-jnlp
-jenkins
-postgres-svc
-redis-svc
+* tomcat-svc
+* postgres-svc
+* redis-svc
 
 Ingress:
 
-pms8-ingress
+* pms8-ingress
 
 Secret:
 
-pg-user
+* pg-user
 
 ## Βήμα 2.
 Θα πρέπει στο φάκελλο pms08 να εκτελεστεί το script initdb.sh όπου θα εκτελέσει τις απαραίτητες sql εντολές για την δημιουργία πινάκων και την εισαγωγή των αρχικών δεδομένων.
@@ -48,11 +44,11 @@ pg-user
 ## Βήμα 3.
 Θα πρέπει να συνδεθείτε στο Jenkins http://huapms08.cloudns.cl:30000 και να γίνουν build τα παρακάτω projects:
 
-pms08-back-login
-pms08-back-main
-pms08-back-mail
+* pms08-back-login
+* pms08-back-main
+* pms08-back-mail
 
-pms08-font
+* pms08-font
 
 ## Βήμα 4.
 
