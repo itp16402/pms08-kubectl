@@ -6,6 +6,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target : "/"
 spec:
   rules:
+#  - host: huapms08.cloudns.cl
   - http:
       paths:
       - path: /
@@ -15,10 +16,21 @@ spec:
             name: tomcat-svc
             port:
               number: 80
+#      - path: /
+#        pathType: Prefix
+#        backend:
+#          service:
+#            name: tomcat-svc
+#            port:
+#              number: 443
       - path: /
         pathType: Prefix
         backend:
-                service:
-                        name: jenkins-svc
-                        port:
-                                number: 8080
+          service:
+            name: jenkins
+            port:
+              number: 8080
+#  tls:            
+#    - hosts:
+#      - huapms08.cloudns.cl
+#      secretName: tls-secret
