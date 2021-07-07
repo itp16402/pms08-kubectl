@@ -4,11 +4,11 @@
 ## Βήμα 1.
 Για την εγκατάσταση όλων των YAML αρχείων θα πρέπει πρώτα να γίνουν pull τα yaml δεδομένα με τα σχετικά directories από το git hub https://github.com/itp16402/pms08-kubectl.
 Θα πρέπει να μετακινηθείτε στο folder pms08.
-Και αθ την εντολή micro8ks.kubctl apply -k ./
+Και θα εκτελέσουμε την εντολή micro8ks.kubctl apply -k ./
 ```sh
 micro8ks.kubctl apply -k ./
 ```
-Θα δημιουργήθουν τα παρακάτω: 
+Θα δημιουργήθουν τα παρακάτω:
 
 deployments:
 
