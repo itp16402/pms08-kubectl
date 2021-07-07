@@ -57,7 +57,7 @@ spec:
       app: tomcat
       tier: frontend
   strategy:
-    type: Recreate
+    type: RollingUpdate
   template:
     metadata:
       labels:
@@ -65,17 +65,8 @@ spec:
         tier: frontend
     spec:
       containers:
-              #       - image: rightctrl/tomcat
       - image: tomcat
         name: tomcat
-#        env:
-#        - name: WORDPRESS_DB_HOST
-#          value: tomcat-postgress
-#        - name: WORDPRESS_DB_PASSWORD
-#          valueFrom:
-#            secretKeyRef:
-#              name: mysql-pass
-#              key: password
         ports:
         - containerPort: 80
           name: tomcat

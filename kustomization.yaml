@@ -1,0 +1,6 @@
+resources:
+        - ingress/pms8-ingress.yaml
+        - postgres/postgres-secret.yaml
+        - postgres/postgres-deployment.yaml
+        - tomcat/tomcat-deployment.yaml
+        - redis/redis-deployment.yaml

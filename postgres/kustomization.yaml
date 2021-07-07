@@ -1,2 +1,3 @@
 resources:
+  - postgres-secret.yaml
   - postgres-deployment.yaml
